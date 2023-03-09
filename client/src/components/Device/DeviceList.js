@@ -27,22 +27,25 @@
 
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchSensors } from '../actions/sensors';
+// import { fetchSensors } from '../actions/sensors';
 
 function SensorList() {
   const dispatch = useDispatch();
   const sensors = useSelector(state => state.sensors);
 
-  useEffect(() => {
-    dispatch(fetchSensors());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchSensors());
+  // }, [dispatch]);
 
   return (
-    <ul>
-      {sensors.map(sensor => (
-        <li key={sensor.id}>{`${sensor.name}: ${sensor.value}`}</li>
-      ))}
-    </ul>
+    <div className='container'>
+      <h2>Sensor</h2>
+      {/* <ul>
+        {sensors.map(sensor => (
+          <li key={sensor.id}>{`${sensor.name}: ${sensor.value}`}</li>
+        ))}
+      </ul> */}
+    </div>
   );
 }
 

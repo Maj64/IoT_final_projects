@@ -91,7 +91,7 @@ import {
 
 const initialState = {
   user: null,
-  isAuthenticated: true,
+  isAuthenticated: false,
   error: null,
 };
 
