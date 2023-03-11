@@ -1,17 +1,18 @@
-import React from 'react'
-import Sidebar from './Sidebar'
-import Header from './Header'
+import React from "react";
+import Sidebar from "./Sidebar";
+import Header from "./Header";
+import "./layout.scss";
 
-const DefaultLayout = ({children}) => {
+const DefaultLayout = ({ children }) => {
   return (
-    <div className='wrapper'>
+    <div className="wrapper">
       <Header />
-      <div className='container'>
+      <div className="container">
         <Sidebar />
-        <div className='content'>{children}</div>
+        <div className="content">{children}</div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default DefaultLayout
+export default DefaultLayout;

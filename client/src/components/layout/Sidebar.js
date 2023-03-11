@@ -1,33 +1,32 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import "./sidebar.scss";
 
 const Sidebar = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const location = useLocation();
+
+  console.log("location: ", location.pathname === "/device");
 
   return (
-    <div>
-      <ul>
-        {isAuthenticated ? (
-          <>
-            <li>
-              <Link to="/dashboard">Dashboard</Link>
-            </li>
-            <li>
-              <Link to="/device">Device</Link>
-            </li>
-          </>
-        ) : (
-          <>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
-            <li>
-              <Link to="/register">Register</Link>
-            </li>
-          </>
-        )}
-      </ul>
+    <div className="sideBar-background">
+      <div className="sideBar-container">
+        <div
+          className={`sideBar-item ${
+            location.pathname === "/dashboard" ? "active" : ""
+          }`}
+        >
+          <Link to="/dashboard">Dashboard</Link>
+        </div>
+        <div
+          className={`sideBar-item ${
+            location.pathname === "/device" ? "active" : ""
+          }`}
+        >
+          <Link to="/device">Device</Link>
+        </div>
+      </div>
     </div>
   );
 };

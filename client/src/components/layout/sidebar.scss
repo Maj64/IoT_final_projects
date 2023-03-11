@@ -1,0 +1,34 @@
+.sideBar-background {
+    width: 20%;
+    background-color: #e6f4ff;
+    color: #ffffff;
+    flex-shrink:0;
+    // width:280px;
+}
+
+.sideBar-container {
+    
+
+    .sideBar-item {
+        background-color: #bae0ff;
+        border: 0.5px solid #bae0ff;
+
+        &:hover {
+            cursor: pointer;
+            background-color: #69b1ff;
+        }
+
+        a {
+            font-size: 18px;
+            display: block;
+            color: black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+    }
+
+    .active {
+        background-color: #69b1ff;
+    }
+}
