@@ -24,21 +24,66 @@
 
 // export default Sensor;
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useEffect } from "react";
 import { Col, Container, Row, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 // import { fetchSensors } from '../actions/sensors';
+import SensorDetail from "./SensorDetail";
+import AddDevice from "./AddDevice";
+import "./deviceList.scss";
+
+import * as mqtt from "precompiled-mqtt";
+
+//setup mqtt
+const host = "127.0.0.1";
+const port = 9001;
+const clientId = `clientId-YSBEeJJPv1`;
+const connectUrl = `ws://${host}:${port}`;
+const topic = "sensor";
+
+// create a client
+const client = mqtt.connect(connectUrl, {
+  clientId,
+  username: "lamntk",
+  password: "123",
+}); // create a client
+
+client.on("connect", function () {
+  client.subscribe("sensor", function (err) {
+    if (!err) {
+      console.log("Connected");
+    }
+  });
+});
 
 function SensorList() {
   const dispatch = useDispatch();
-  const sensors = useSelector((state) => state.sensors);
+  // const sensors = useSelector((state) => state.sensors);
+  const [isShowAddForm, setShowAddForm] = useState(false);
+  const initSensor = [
+    {
+      keyCode: 1,
+      name: "sensor1",
+      statusId: 1,
+    },
+    {
+      keyCode: 2,
+      name: "sensor2",
+      statusId: 0,
+    },
+  ];
+  const sensors = useSelector((state) => state.sensors) || initSensor;
+
+  const handleSendData = (payload) => {
+    client.publish(topic, JSON.stringify(payload));
+  };
 
   // useEffect(() => {
   //   dispatch(fetchSensors());
   // }, [dispatch]);
 
   return (
-    <div className="container">
+    <><div className="container">
       <Container fluid>
         <Row>
           <Col>Title</Col>
@@ -78,11 +123,33 @@ function SensorList() {
         </Row>
       </Container>
       {/* <ul>
-        {sensors.map(sensor => (
-          <li key={sensor.id}>{`${sensor.name}: ${sensor.value}`}</li>
-        ))}
-      </ul> */}
-    </div>
+      {sensors.map(sensor => (
+        <li key={sensor.id}>{`${sensor.name}: ${sensor.value}`}</li>
+=======
+  <div className="sensorList-background">
+    <div className="sensorList-container">
+      {/* <h2>Sensor</h2> */}
+      {sensors.map((sensor) => (
+        <SensorDetail
+          key={sensor.keyCode}
+          handleSendData={handleSendData}
+          {...sensor} />
+      ))}
+      <div className="add-sensor">
+        <div
+          className="button-background"
+          onClick={() => {
+            setShowAddForm(true);
+          } }
+        >
+          <i class="fa-solid fa-plus"></i>
+        </div>
+      </div>
+    </div><div className="sensorList-add-form">
+        <AddDevice
+          isShowAddForm={isShowAddForm}
+          setShowAddForm={setShowAddForm} />
+      </div></>
   );
 }
 

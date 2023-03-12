@@ -40,14 +40,13 @@ const getAllSensors = (sensorId) => {
 const getSensorsIdByKeyCode = (sensorKeyCode) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let sensorId = "ERROR";
+      let sensor = "error";
       if (sensorKeyCode) {
-        sensors = await db.Sensors.findOne({
+        sensor = await db.Sensors.findOne({
           where: { keyCode: sensorKeyCode },
         });
       }
-
-      resolve(sensorId);
+      resolve(sensor.id);
     } catch (error) {
       reject(error);
     }
