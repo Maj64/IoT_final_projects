@@ -2,9 +2,12 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addSensor } from "../actions";
+// import { addSensor } from "../actions";
+import "./addDevice.scss";
 
-function AddSensor() {
+function AddSensor(props) {
+  const { isShowAddForm, setShowAddForm } = props;
+
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
@@ -13,38 +16,51 @@ function AddSensor() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newSensor = { name, description, location };
-    dispatch(addSensor(newSensor));
-    history.push("/");
+    // const newSensor = { name, description, location };
+    // dispatch(addSensor(newSensor));
+    // history.push("/");
   };
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Name:</label>
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
+  return isShowAddForm ? (
+    <div className="addForm-container">
+      <div className="addForm-header">
+        <div className="addForm-button" onClick={() => setShowAddForm(false)}>
+          <i className="fa-regular fa-circle-xmark"></i>
+        </div>
       </div>
-      <div>
-        <label>Description:</label>
-        <textarea
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        ></textarea>
+      <div className="addForm-body">
+        <div className="row">
+          <label>Name:</label>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+        <div className="row">
+          <label>Description:</label>
+          <input
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+        </div>
+        <div className="row">
+          <label>Location:</label>
+          <input
+            type="text"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+          />
+        </div>
+        <div className="row">
+          <button type="button" onClick={handleSubmit}>
+            Add Sensor
+          </button>
+        </div>
       </div>
-      <div>
-        <label>Location:</label>
-        <input
-          type="text"
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
-        />
-      </div>
-      <button type="submit">Add Sensor</button>
-    </form>
+    </div>
+  ) : (
+    <div />
   );
 }
 
