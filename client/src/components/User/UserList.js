@@ -10,7 +10,7 @@ import {
   Col,
 } from "react-bootstrap";
 
-import "../../styles/page/User.scss"
+import "../../styles/page/User.scss";
 
 const MyTable = () => {
   // Sample data for the table
@@ -103,8 +103,12 @@ const MyTable = () => {
     <>
       <Container className="user-container">
         <Row>
-          <Col xs={2}><h2>User List</h2></Col>
-          <Col xs={{ span: 1, offset: 9}}><Button variant="primary">Add</Button></Col>
+          <Col xs={2}>
+            <h2>User List</h2>
+          </Col>
+          <Col xs={{ span: 1, offset: 9 }}>
+            <Button variant="primary">Add</Button>
+          </Col>
         </Row>
         <Row>
           <Col>
@@ -170,7 +174,11 @@ const MyTable = () => {
       </Container>
 
       {/* Add Modal */}
-      <Modal show={showAddModal} onHide={() => setShowAddModal(false)}>
+      <Modal
+        show={showAddModal}
+        onHide={() => setShowAddModal(false)}
+        backdrop="static"
+      >
         <Modal.Header closeButton>
           <Modal.Title>Add Row</Modal.Title>
         </Modal.Header>
@@ -200,8 +208,12 @@ const MyTable = () => {
       </Modal>
 
       {/* Edit Modal */}
-      <Modal show={showEditModal} onHide={() => setShowEditModal(false)}>
-        <Modal.Header closeButton>
+      <Modal
+        show={showEditModal}
+        onHide={() => setShowEditModal(false)}
+        backdrop="static"
+      >
+        <Modal.Header>
           <Modal.Title>Edit Row</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -230,11 +242,14 @@ const MyTable = () => {
                 defaultValue={selectedRow.email}
               />
             </Form.Group>
-            <Button variant="primary" type="submit">
-              Save Changes
-            </Button>
           </Form>
         </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={() => setShowEditModal(false)}>Close</Button>
+          <Button variant="primary" type="submit">
+            Save Changes
+          </Button>
+        </Modal.Footer>
       </Modal>
     </>
   );

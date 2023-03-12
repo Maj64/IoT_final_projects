@@ -28,7 +28,7 @@ client.subscribe(receivedTopic, function (err) {
 
 client.on("message", async (topic, message) => {
   // console.log(JSON.parse(message));
-  console.log("topic: ", topic, message);
+  // console.log("topic: ", topic, message);
   if (topic === receivedTopic) {
     if (message) {
       // Check data

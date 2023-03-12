@@ -1,14 +1,15 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Image, Navbar, Row } from "react-bootstrap";
 // import { logout } from '../../actions/auth';
-import "../../styles/Layout/header.scss"
+import "../../styles/Layout/header.scss";
+import logo from "../../assets/svg/droplet-half.svg"
 
 function Header(props) {
   const dispatch = useDispatch();
   const { isAuthenticated, user } = useSelector((state) => state.auth);
-  const isLogin = false;
+  const isLogin = true;
 
   const handleLogout = () => {
     // dispatch(logout());
@@ -16,10 +17,18 @@ function Header(props) {
 
   return (
     <>
-      <Container fluid className="header-container">
-        <Row>
-          <Col xs={2} className="headerTitle">
-            <Link to={"/dashboard"}>Water Quality Monitoring</Link>
+      <Container fluid className={"no-gutters mx-0 px-0 header-container"}>
+        <Row className={"no-gutters mx-0 px-0"}>
+          <Col xs={2}>
+            <Navbar expand="sm" className="header-logo">
+              <Navbar.Brand className="headerTitle">
+                <Link to={"/dashboard"}>
+                  <Image src={logo} alt="logo" width="50" height="50" id="logo" />
+                  Water Quality Monitoring
+                </Link>
+              </Navbar.Brand>
+            </Navbar>
+            {/* <Link to={"/dashboard"}>Water Quality Monitoring</Link> */}
           </Col>
           <Col xs={{ span: 2, offset: 8 }}>
             {isLogin ? (

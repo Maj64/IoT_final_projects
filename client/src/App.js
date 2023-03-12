@@ -10,6 +10,7 @@ import Dashboard from "./components/Dashboard";
 import DefaultLayout from "./components/layout/DefaultLayout";
 import Sensor from "./components/Device/DeviceList";
 import MyTable from "./components/User/UserList";
+import SensorList from "./components/Sensor/SensorList";
 // import { authenticate } from './actions/authActions';
 
 
@@ -54,6 +55,15 @@ function App() {
           component={() => (
             <DefaultLayout>
               <MyTable />
+            </DefaultLayout>
+          )}
+        />
+        <PrivateRoute
+          exact
+          path="/sensor"
+          component={() => (
+            <DefaultLayout>
+              <SensorList />
             </DefaultLayout>
           )}
         />

@@ -9,6 +9,7 @@ import sensorDataController from "../controllers/sensorDataController";
 const router = express.Router();
 
 const initWebRouters = (app) => {
+
   // test server
   router.get("/", homeController.getHomePage);
   router.get("/users", homeController.getUsersCRUD);

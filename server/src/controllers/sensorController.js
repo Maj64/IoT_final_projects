@@ -1,7 +1,7 @@
 import sensorService from "../services/sensorService";
 
 const handleGetAllSensors = async (req, res) => {
-  const id = req.body.id;
+  const id = req.query.id;
 
   if (!id) {
     return res.status(200).json({

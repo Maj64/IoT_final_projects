@@ -8,17 +8,16 @@ import reportWebVitals from "./reportWebVitals";
 import store from "./store/index";
 import "./styles/globla.scss";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
     <Provider store={store}>
       <Router>
         <App />
       </Router>
     </Provider>
-  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

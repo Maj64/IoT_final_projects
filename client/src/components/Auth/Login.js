@@ -1,45 +1,9 @@
-// import React, { useState } from 'react';
-// import { useDispatch } from 'react-redux';
-// import { login } from '../../utils/auth';
-
-// const Login = () => {
-//   const dispatch = useDispatch();
-//   const [email, setEmail] = useState('');
-//   const [password, setPassword] = useState('');
-
-//   const handleLogin = async (e) => {
-//     e.preventDefault();
-//     try {
-//       const user = await login(email, password);
-//       dispatch(loginSuccess(user));
-//     } catch (error) {
-//       dispatch(loginFailure(error.message));
-//     }
-//   };
-
-//   return (
-//     <form onSubmit={handleLogin}>
-//       <label>
-//         Email:
-//         <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-//       </label>
-//       <label>
-//         Password:
-//         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-//       </label>
-//       <button type="submit">Login</button>
-//     </form>
-//   );
-// };
-
-// export default Login;
-
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import "./Login.scss";
 
-// import { login } from '../actions/auth';
+import { loginAsync } from "../../store/actions/authSlice";
 
 function LoginForm() {
   const history = useHistory();
@@ -54,12 +18,14 @@ function LoginForm() {
     history.push("/dashboard");
   }
 
-  const handleLogin = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
-    const userNameFormat = /[ `!#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-    console.log(">>>", username, userNameFormat.test(username), password);
-    setWarning("error");
-    // dispatch(login(username, password));
+    const credentials = {
+      email: username,
+      password
+    }
+    dispatch(loginAsync(credentials))
+    history.push('/')
   };
 
   const handleRegister = () => {
