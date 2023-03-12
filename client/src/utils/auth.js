@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie'
 
-const TokenKey = 'iot_token'
+const TokenKey = 'auth_token'
 
 export function getToken() {
   return Cookies.get(TokenKey)

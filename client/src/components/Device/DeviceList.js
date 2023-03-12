@@ -24,7 +24,7 @@
 
 // export default Sensor;
 
-import React, { useEffect, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Col, Container, Row, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 // import { fetchSensors } from '../actions/sensors';
