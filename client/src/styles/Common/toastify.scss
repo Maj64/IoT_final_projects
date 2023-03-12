@@ -1,0 +1,46 @@
+
+$toastify-container-width: 500px;
+
+// Colors
+$toast-alert-color: #E92D30;
+$toast-success-color: #7FD129;
+$toast-info-color: #0088CE;
+
+.custom-toast-container{
+    width: $toastify-container-width;
+}
+
+.Toastify__toast-container--center{
+    margin-left: - ($toastify-container-width / 2)
+}
+
+.Toastify__toast-container--top-center{
+    @extend .Toastify__toast-container--center;
+}
+    
+.Toastify__toast-container--bottom-center{
+    @extend .Toastify__toast-container--center;
+}
+
+.Toastify__toast-body{
+    padding: 10px;
+  }
+
+.custom-toast{
+    min-height: 45px;
+}
+
+.custom-error-toast {
+    @extend .custom-toast;
+    background: $toast-alert-color;
+}
+
+.custom-success-toast {
+    @extend .custom-toast;
+    background: $toast-success-color;
+}
+
+.custom-info-toast {
+    @extend .custom-toast;
+    background: $toast-info-color;
+}

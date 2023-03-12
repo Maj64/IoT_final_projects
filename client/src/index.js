@@ -5,9 +5,10 @@ import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import reportWebVitals from "./reportWebVitals";
-import store from "./store";
-import "./index.css";
+import store from "./store/index";
+import "./styles/globla.scss";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

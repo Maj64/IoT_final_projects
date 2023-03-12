@@ -3,19 +3,12 @@
 }
 
 .header-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  list-style-type: none;
   height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
   background-color: #333;
 
   .headerTitle {
     background-color: #04AA6D;
-    font-size: 20px;
+    font-size: 1em;
     font-weight: 600;
 
     a {
@@ -37,6 +30,7 @@
   
   .userForm {
     display: flex;
+    justify-content: flex-end;
 
     a {
       display: block;

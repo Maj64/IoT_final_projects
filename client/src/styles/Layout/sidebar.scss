@@ -1,8 +1,9 @@
 .sideBar-background {
-    width: 20%;
+    width: 100%;
     background-color: #e6f4ff;
     color: #ffffff;
     flex-shrink:0;
+    height: calc(100vh - 52px);
     // width:280px;
 }
 

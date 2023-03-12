@@ -1,8 +1,9 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { Col, Container, Row } from "react-bootstrap";
 // import { logout } from '../../actions/auth';
-import "./header.scss";
+import "../../styles/Layout/header.scss"
 
 function Header(props) {
   const dispatch = useDispatch();
@@ -14,23 +15,48 @@ function Header(props) {
   };
 
   return (
-    <div className="header-background">
+    <>
+      <Container fluid className="header-container">
+        <Row>
+          <Col xs={2} className="headerTitle">
+            <Link to={"/dashboard"}>Water Quality Monitoring</Link>
+          </Col>
+          <Col xs={{ span: 2, offset: 8 }}>
+            {isLogin ? (
+              <div className="userForm">
+                <Link to={"/login"}>Logout</Link>
+              </div>
+            ) : (
+              <div className="userForm">
+                <Link to={"/login"}>Login</Link>
+                <Link to={"/register"}>Register</Link>
+              </div>
+            )}
+          </Col>
+        </Row>
+      </Container>
+      {/* <div className="header-background">
       <div className="header-container">
-        <div className="headerTitle">
-          <Link to={"/dashboard"}>Water Quality Monitoring</Link>
-        </div>
-        {isLogin ? (
-          <div className="userForm">
-            <Link to={"/login"}>Logout</Link>
-          </div>
-        ) : (
-          <div className="userForm">
-            <Link to={"/login"}>Login</Link>
-            <Link to={"/register"}>Register</Link>
-          </div>
-        )}
+        <Row>
+          <Col xs={2}>
+            <Link to={"/dashboard"}>Water Quality Monitoring</Link>
+          </Col>
+          <Col xs={10}>
+            {isLogin ? (
+              <div className="userForm">
+                <Link to={"/login"}>Logout</Link>
+              </div>
+            ) : (
+              <div className="userForm">
+                <Link to={"/login"}>Login</Link>
+                <Link to={"/register"}>Register</Link>
+              </div>
+            )}
+          </Col>
+        </Row>
       </div>
-    </div>
+    </div> */}
+    </>
   );
 }
 

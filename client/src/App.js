@@ -1,13 +1,17 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Switch, Route, Link, Redirect } from "react-router-dom";
+import {ToastContainer} from './components/Common/Toast'
+
 import PrivateRoute from "./components/PrivateRoute";
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
 import Dashboard from "./components/Dashboard";
 import DefaultLayout from "./components/layout/DefaultLayout";
 import Sensor from "./components/Device/DeviceList";
+import MyTable from "./components/User/UserList";
 // import { authenticate } from './actions/authActions';
+
 
 function App() {
   // const dispatch = useDispatch();
@@ -44,10 +48,29 @@ function App() {
             </DefaultLayout>
           )}
         />
+        <PrivateRoute
+          exact
+          path="/user"
+          component={() => (
+            <DefaultLayout>
+              <MyTable />
+            </DefaultLayout>
+          )}
+        />
 
         {/* <PrivateRoute exact path="/" component={Dashboard} /> */}
         {/* <PrivateRoute exact path="/sensors" component={Sensors} /> */}
       </Switch>
+      <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          newestOnTop
+          closeOnClick = {false}
+          rtl={false}
+          pauseOnVisibilityChange
+          pauseOnHover
+          className="custom-toast-container"
+        />
     </div>
   );
 }
