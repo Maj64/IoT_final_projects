@@ -5,6 +5,7 @@ import { Col, Container, Image, Navbar, Row } from "react-bootstrap";
 // import { logout } from '../../actions/auth';
 import "../../styles/Layout/header.scss";
 import logo from "../../assets/svg/droplet-half.svg"
+import { logoutSuccess } from "../../store/actions/authSlice";
 
 function Header(props) {
   const dispatch = useDispatch();
@@ -12,7 +13,7 @@ function Header(props) {
   const isLogin = true;
 
   const handleLogout = () => {
-    // dispatch(logout());
+    dispatch(logoutSuccess())
   };
 
   return (
@@ -33,7 +34,7 @@ function Header(props) {
           <Col xs={{ span: 2, offset: 8 }}>
             {isLogin ? (
               <div className="userForm">
-                <Link to={"/login"}>Logout</Link>
+                <button onClick={handleLogout} className="userForm">Logout</button>
               </div>
             ) : (
               <div className="userForm">

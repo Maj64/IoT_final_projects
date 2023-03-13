@@ -1,55 +1,75 @@
-import React, { useState } from "react";
-import { Button, Modal, Form } from "react-bootstrap";
+// import React, { useState, useEffect } from "react";
+// import { Button, Modal, Form } from "react-bootstrap";
 
-const FormComponent = ({
-  titleForm,
-  formInput,
-  showModal,
-  onSubmitForm,
-  onCloseModal,
-}) => {
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
-    const formData = {};
-    formInput.forEach((input) => {
-      formData[input.field] = event.target[input.field].value;
-    });
-    onSubmitForm(formData);
-    onCloseModal();
-  };
+// const FormComponent = ({
+//   titleForm,
+//   formInput,
+//   showModal,
+//   onSubmitForm,
+//   onCloseModal,
+// }) => {
+//   const [inputs, setInputs] = useState([]);
+  
 
-  const renderFormInput = () => {
-    const inputList = formInput;
-    return inputList.map((inputItem) => (
-      <Form.Group key={inputItem.field}>
-        <Form.Label>{inputItem.name}</Form.Label>
-        <Form.Control
-          type={inputItem.type}
-          name={inputItem.field}
-          placeholder={`Enter ${inputItem.field}`}
-        />
-      </Form.Group>
-    ));
-  };
+//   useEffect(() => {
+//     if (formInput) {
+//       setInputs(formInput.variants.map((variant) => ({
+//         name: variant.name,
+//         price: variant.price
+//       })));
+//     }
+//   }, [formInput]);
 
-  return (
-    <div>
-      <Modal show={showModal} onHide={onCloseModal} backdrop="static">
-        <Modal.Header>
-          <Modal.Title>{titleForm}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form onSubmit={handleFormSubmit}>{renderFormInput()}</Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={onCloseModal}>Close</Button>
-          <Button variant="primary" type="submit">
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </div>
-  );
-};
+//   const handleChange = (e, field) => {
+//     const { name, value } = e.target;
+//     const newInput = {};
+//     newInput[name] = value;
+//     setInputs({ ...input, newInput});
+//   };
 
-export default FormComponent;
+//   const handleFormSubmit = (event) => {
+//     event.preventDefault();
+//     // const formData = {};
+//     // formInput.forEach((input) => {
+//     //   formData[input.field] = event.target.value;
+//     // });
+//     onSubmitForm(input);
+//     onCloseModal();
+//   };
+
+//   const renderFormInput = () => {
+//     const inputList = formInput;
+//     return inputList.map((inputItem, index) => (
+//       <Form.Group key={inputItem.field}>
+//         <Form.Label>{inputItem.name}</Form.Label>
+//         <Form.Control
+//           type={inputItem.type}
+//           name={inputItem.field}
+//           placeholder={`Enter ${inputItem.field}`}
+//           onChange={(e) => handleChange(e, inputItem.field)}
+//         />
+//       </Form.Group>
+//     ));
+//   };
+
+//   return (
+//     <div>
+//       <Modal show={showModal} onHide={onCloseModal} backdrop="static">
+//         <Modal.Header>
+//           <Modal.Title>{titleForm}</Modal.Title>
+//         </Modal.Header>
+//         <Modal.Body>
+//           <Form onSubmit={handleFormSubmit}>{renderFormInput()}</Form>
+//         </Modal.Body>
+//         <Modal.Footer>
+//           <Button onClick={onCloseModal}>Close</Button>
+//           <Button variant="primary" type="button" onClick={handleFormSubmit}>
+//             Save Changes
+//           </Button>
+//         </Modal.Footer>
+//       </Modal>
+//     </div>
+//   );
+// };
+
+// export default FormComponent;
