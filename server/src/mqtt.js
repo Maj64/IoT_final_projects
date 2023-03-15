@@ -3,19 +3,17 @@ import sensorService from "./services/sensorService";
 import sensorDataService from "./services/sensorDataService";
 
 //setup mqtt
-const host = "127.0.0.1";
-const port = 9001;
-const clientId = `mqttx_6e6920e7`;
-const connectUrl = `ws://${host}:${port}`;
+const protocol = "wss";
+const host = "2e40b1502386486aa13fa1bf324ee13b.s2.eu.hivemq.cloud";
+const port = 8884;
+const clientId = "mqttjs_" + Math.random().toString(16).substr(2, 8);
+const connectUrl = `${protocol}://${host}:${port}/mqtt`;
 const receivedTopic = "sensor";
 
 const client = mqtt.connect(connectUrl, {
   clientId,
-  username: "lamntk",
-  password: "123",
-  clean: true,
-  connectTimeout: 4000,
-  reconnectPeriod: 1000,
+  username: "myrindavermouth",
+  password: "nW4@W@LVkJ2ie33",
 }); // create a client
 
 // client.on("connect", function () {

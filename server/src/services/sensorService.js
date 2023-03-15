@@ -87,7 +87,7 @@ const createNewSensor = (sensorData) => {
         });
       } else {
         await db.Sensors.create({
-          keyCode: sensorData.name,
+          keyCode: sensorData.keyCode,
           name: sensorData.name,
           statusId: sensorData.statusId,
           userId: sensorData.userId,
@@ -146,7 +146,7 @@ const updateSensorData = (newSensorData) => {
       });
       if (sensorData) {
         sensorData.name = newSensorData.name;
-        sensorData.status = newSensorData.status;
+        sensorData.statusId = newSensorData.statusId;
 
         await sensorData.save();
 
