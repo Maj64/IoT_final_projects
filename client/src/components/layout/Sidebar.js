@@ -24,7 +24,7 @@ const Sidebar = () => {
             location.pathname === "/device" ? "active" : ""
           }`}
         >
-          <Link to="/device">Device</Link>
+          <Link to="/sensor">Sensor</Link>
         </div>
         <div
           className={`sideBar-item ${
@@ -32,13 +32,6 @@ const Sidebar = () => {
           }`}
         >
           <Link to="/user">User</Link>
-        </div>
-        <div
-          className={`sideBar-item ${
-            location.pathname === "/sensor" ? "active" : ""
-          }`}
-        >
-          <Link to="/sensor">Sensor</Link>
         </div>
       </div>
     </div>

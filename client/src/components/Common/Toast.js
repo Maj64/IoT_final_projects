@@ -13,7 +13,7 @@ const CustomToastContainer = props =>{
     return (
         <ToastContainer
             position="top-center"
-            autoClose={5000}
+            autoClose={1500}
             newestOnTop
             draggable
             closeOnClick

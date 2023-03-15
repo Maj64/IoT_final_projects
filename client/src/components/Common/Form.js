@@ -2,28 +2,35 @@ import React, { useState, useEffect } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
 
 const FormComponent = ({
-    modalData,
-    dataForm,
-    formInputList,
-    onSubmitForm,
-    onCloseModal,
+  modalData,
+  dataForm,
+  formInputList,
+  onSubmitForm,
+  onCloseModal,
 }) => {
+  const [formValues, setFormValues] = useState(dataForm);
 
-    const [formValues, setFormValues] = useState(dataForm);
+  useEffect(() => {
+    setFormValues(dataForm)
+  }, [dataForm])
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setFormValues((prevValues) => ({ ...prevValues, [name]: value }));
+    setFormValues((prevValues) => {
+      console.log(prevValues);
+      return ({ ...prevValues, [name]: value })
+    }
+    );
   };
 
-//   const handleChange = (event) => {
-//     const { name, value } = event.target
+  //   const handleChange = (event) => {
+  //     const { name, value } = event.target
 
-//     // const { name, value } = e.target;
-//     // const newInput = {};
-//     // newInput[name] = value;
-//     // setInputs({ ...input, newInput});
-//   };
+  //     // const { name, value } = e.target;
+  //     // const newInput = {};
+  //     // newInput[name] = value;
+  //     // setInputs({ ...input, newInput});
+  //   };
 
   const handleSubmit = (event) => {
     // event.preventDefault();
@@ -41,21 +48,23 @@ const FormComponent = ({
 
   const handleClose = () => {
     onCloseModal();
-  }
+  };
 
   const renderFormInput = () => {
-    return formInputList.map((formInputItem, index) => (
-      <Form.Group key={formInputItem.field}>
-        <Form.Label>{formInputItem.name}</Form.Label>
-        <Form.Control
-          type={formInputItem.type}
-          name={formInputItem.field}
-          placeholder={`Enter ${formInputItem.field}`}
-          value={formValues[formInputItem.field]}
-          onChange={(e) => handleChange(e)}
-        />
-      </Form.Group>
-    ));
+    return formInputList.map((formInputItem) => {
+      return (
+        <Form.Group key={formInputItem.field}>
+          <Form.Label>{formInputItem.name}</Form.Label>
+          <Form.Control
+            type={formInputItem.type}
+            name={formInputItem.field}
+            placeholder={`Enter ${formInputItem.field}`}
+            value={formValues[formInputItem.field]}
+            onChange={(e) => handleChange(e)}
+          />
+        </Form.Group>
+      )
+    });
   };
 
   return (

@@ -1,6 +1,6 @@
 // import { hasPermission } from '../services/userService';
 import { Link, useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Bar } from "react-chartjs-2";
 import { Col, Container, Row } from "react-bootstrap";
 import {
@@ -15,6 +15,11 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import { faker } from "@faker-js/faker";
+
+import { getSensorDataList } from "../service/sensorData";
+import { useEffect, useState } from "react";
+import MyChart from "./Chart";
+import SensorDropdown from "./DropDown";
 
 ChartJS.register(
   CategoryScale,
@@ -44,35 +49,27 @@ export const options = {
 
 const Dashboard = ({ user }) => {
   const history = useHistory();
-  const dispatch = useDispatch();
+  const sensors = useSelector(state => state.sensor.sensorList)
+  const [sensorId, setSensorId] = useState()
 
-  const data = {
-    labels,
-    datasets: [
-      {
-        label: "Temperature",
-        data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
-        borderColor: "rgb(255, 99, 132)",
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
-      },
-      {
-        label: "Oxygen",
-        data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
-        borderColor: "rgb(53, 162, 235)",
-        backgroundColor: "rgba(53, 162, 235, 0.5)",
-      },
-    ],
-  };
+  const handleSelected = (id) => {
+    console.log("dashboard", id);
+    setSensorId(id)
+  }
   
   return (
     <div className="container">
       <Container>
         <Row>
-          <Col>Dashboard</Col>
+          <Col><h2>Dashboard</h2><br /></Col>
+        </Row>
+        <Row>
+          <SensorDropdown sensorList={ sensors } onSelect={handleSelected} />
         </Row>
         <Row>
           <Col>
-            <Line options={options} data={data} />
+            {/* <Line options={options} data={data} /> */}
+            <MyChart sensorId={sensorId} />
           </Col>
         </Row>
       </Container>

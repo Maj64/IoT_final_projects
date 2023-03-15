@@ -42,7 +42,7 @@ function App() {
         />
         <PrivateRoute
           exact
-          path="/device"
+          path="/sensor"
           component={() => (
             <DefaultLayout>
               <Sensor />
@@ -55,15 +55,6 @@ function App() {
           component={() => (
             <DefaultLayout>
               <MyTable />
-            </DefaultLayout>
-          )}
-        />
-        <PrivateRoute
-          exact
-          path="/sensor"
-          component={() => (
-            <DefaultLayout>
-              <SensorList />
             </DefaultLayout>
           )}
         />

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Col, Row, Table, Button, Container } from "react-bootstrap";
+import Toggle from "react-bootstrap-toggle";
+import { Col, Row, Table, Button, Container, Form } from "react-bootstrap";
 
 import "../../styles/Common/Table.scss";
 
@@ -10,6 +11,7 @@ const TableComponent = ({
   onAddItem,
   onEditItem,
   onDeleteItem,
+  onToggle
 }) => {
   // State variable for handling pagination
   const [currentPage, setCurrentPage] = useState(1);
@@ -25,17 +27,21 @@ const TableComponent = ({
     return dataSource.slice(startIndex, endIndex);
   };
 
-  const handleRowClick = (dataRow) => {
-    console.log("Clicked row", dataRow);
-  };
-
   const handleDeleteRow = (e, dataRow) => {
     e.stopPropagation();
     onDeleteItem(dataRow);
   };
 
+  const handleToggle = (e, dataRow) => {
+    console.log("data", !e);
+    const dataEdit = {
+      ...dataRow,
+      statusId: e
+    }
+    onToggle(dataEdit)
+  }
+
   const handleEditRow = (e, dataRow) => {
-    e.stopPropagation();
     onEditItem(dataRow);
   };
 
@@ -47,10 +53,25 @@ const TableComponent = ({
   const renderTableRows = () => {
     const currentPageData = getCurrentPageData();
     return currentPageData.map((dataRow) => (
-      <tr key={dataRow.id} onClick={() => handleRowClick(dataRow)}>
-        {columns.map((column, index) => (
-          <td key={index}>{dataRow[column.field]}</td>
-        ))}
+      <tr key={dataRow.id}>
+        {columns.map((column, index) => {
+          if (column.field === "statusId") {
+            
+            return (
+              <td key={index}>
+                <Toggle
+                  onClick={(e) => handleToggle(e, dataRow)}
+                  className="toggle-btn"
+                  size="xs"
+                  onstyle="success"
+                  active={JSON.parse(dataRow[column.field])}
+                />
+              </td>
+            );
+          } else {
+            return <td key={index}>{dataRow[column.field]}</td>;
+          }
+        })}
         <td className="actions">
           <Button variant="primary" onClick={(e) => handleEditRow(e, dataRow)}>
             Edit
