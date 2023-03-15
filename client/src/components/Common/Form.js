@@ -1,75 +1,81 @@
-// import React, { useState, useEffect } from "react";
-// import { Button, Modal, Form } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Button, Modal, Form } from "react-bootstrap";
 
-// const FormComponent = ({
-//   titleForm,
-//   formInput,
-//   showModal,
-//   onSubmitForm,
-//   onCloseModal,
-// }) => {
-//   const [inputs, setInputs] = useState([]);
-  
+const FormComponent = ({
+    modalData,
+    dataForm,
+    formInputList,
+    onSubmitForm,
+    onCloseModal,
+}) => {
 
-//   useEffect(() => {
-//     if (formInput) {
-//       setInputs(formInput.variants.map((variant) => ({
-//         name: variant.name,
-//         price: variant.price
-//       })));
-//     }
-//   }, [formInput]);
+    const [formValues, setFormValues] = useState(dataForm);
 
-//   const handleChange = (e, field) => {
-//     const { name, value } = e.target;
-//     const newInput = {};
-//     newInput[name] = value;
-//     setInputs({ ...input, newInput});
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormValues((prevValues) => ({ ...prevValues, [name]: value }));
+  };
+
+//   const handleChange = (event) => {
+//     const { name, value } = event.target
+
+//     // const { name, value } = e.target;
+//     // const newInput = {};
+//     // newInput[name] = value;
+//     // setInputs({ ...input, newInput});
 //   };
 
-//   const handleFormSubmit = (event) => {
-//     event.preventDefault();
-//     // const formData = {};
-//     // formInput.forEach((input) => {
-//     //   formData[input.field] = event.target.value;
-//     // });
-//     onSubmitForm(input);
-//     onCloseModal();
-//   };
+  const handleSubmit = (event) => {
+    // event.preventDefault();
+    // // const formData = {};
+    // // formInput.forEach((input) => {
+    // //   formData[input.field] = event.target.value;
+    // // });
+    // onSubmitForm(input);
+    // onCloseModal();
+    event.preventDefault();
+    console.log(formValues);
+    onSubmitForm(formValues);
+    onCloseModal();
+  };
 
-//   const renderFormInput = () => {
-//     const inputList = formInput;
-//     return inputList.map((inputItem, index) => (
-//       <Form.Group key={inputItem.field}>
-//         <Form.Label>{inputItem.name}</Form.Label>
-//         <Form.Control
-//           type={inputItem.type}
-//           name={inputItem.field}
-//           placeholder={`Enter ${inputItem.field}`}
-//           onChange={(e) => handleChange(e, inputItem.field)}
-//         />
-//       </Form.Group>
-//     ));
-//   };
+  const handleClose = () => {
+    onCloseModal();
+  }
 
-//   return (
-//     <div>
-//       <Modal show={showModal} onHide={onCloseModal} backdrop="static">
-//         <Modal.Header>
-//           <Modal.Title>{titleForm}</Modal.Title>
-//         </Modal.Header>
-//         <Modal.Body>
-//           <Form onSubmit={handleFormSubmit}>{renderFormInput()}</Form>
-//         </Modal.Body>
-//         <Modal.Footer>
-//           <Button onClick={onCloseModal}>Close</Button>
-//           <Button variant="primary" type="button" onClick={handleFormSubmit}>
-//             Save Changes
-//           </Button>
-//         </Modal.Footer>
-//       </Modal>
-//     </div>
-//   );
-// };
+  const renderFormInput = () => {
+    return formInputList.map((formInputItem, index) => (
+      <Form.Group key={formInputItem.field}>
+        <Form.Label>{formInputItem.name}</Form.Label>
+        <Form.Control
+          type={formInputItem.type}
+          name={formInputItem.field}
+          placeholder={`Enter ${formInputItem.field}`}
+          value={formValues[formInputItem.field]}
+          onChange={(e) => handleChange(e)}
+        />
+      </Form.Group>
+    ));
+  };
 
-// export default FormComponent;
+  return (
+    <div>
+      <Modal show={modalData.visible} onHide={handleClose} backdrop="static">
+        <Modal.Header>
+          <Modal.Title>{modalData.title}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>{renderFormInput()}</Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={handleClose}>Close</Button>
+          <Button variant="primary" type="button" onClick={handleSubmit}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </div>
+  );
+};
+
+export default FormComponent;

@@ -34,7 +34,8 @@ function Header(props) {
           <Col xs={{ span: 2, offset: 8 }}>
             {isLogin ? (
               <div className="userForm">
-                <button onClick={handleLogout} className="userForm">Logout</button>
+                <Link onClick={handleLogout} to="#">Logout</Link>
+                {/* <button onClick={handleLogout} className="userForm">Logout</button> */}
               </div>
             ) : (
               <div className="userForm">

@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 import { Col, Row, Table, Button, Container } from "react-bootstrap";
 
-import "../../styles/Common/Table.scss"
+import "../../styles/Common/Table.scss";
 
-const TableComponent = ({ dataSource, columns, titleTable, onAddItem }) => {
+const TableComponent = ({
+  dataSource,
+  columns,
+  titleTable,
+  onAddItem,
+  onEditItem,
+  onDeleteItem,
+}) => {
   // State variable for handling pagination
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -24,20 +31,25 @@ const TableComponent = ({ dataSource, columns, titleTable, onAddItem }) => {
 
   const handleDeleteRow = (e, dataRow) => {
     e.stopPropagation();
-    console.log("Deleted row", dataRow);
+    onDeleteItem(dataRow);
   };
 
   const handleEditRow = (e, dataRow) => {
     e.stopPropagation();
-    console.log("Edit row", dataRow);
+    onEditItem(dataRow);
+  };
+
+  const handleAddRow = (e) => {
+    e.stopPropagation();
+    onAddItem();
   };
 
   const renderTableRows = () => {
     const currentPageData = getCurrentPageData();
     return currentPageData.map((dataRow) => (
       <tr key={dataRow.id} onClick={() => handleRowClick(dataRow)}>
-        {columns.map((column) => (
-          <td key={column.field}>{dataRow[column.field]}</td>
+        {columns.map((column, index) => (
+          <td key={index}>{dataRow[column.field]}</td>
         ))}
         <td className="actions">
           <Button variant="primary" onClick={(e) => handleEditRow(e, dataRow)}>
@@ -76,15 +88,17 @@ const TableComponent = ({ dataSource, columns, titleTable, onAddItem }) => {
             <h2>{titleTable}</h2>
           </Col>
           <Col xs={{ span: 2, offset: 8 }}>
-            <Button variant="success" onClick={onAddItem}>Add Device</Button>{" "}
+            <Button variant="success" onClick={handleAddRow}>
+              Add Device
+            </Button>{" "}
           </Col>
         </Row>
         <Row className="mb-2 row-table">
           <Table striped bordered hover size="lg">
             <thead>
               <tr>
-                {columns.map((column) => (
-                  <th key={column.field}>{column.name}</th>
+                {columns.map((column, index) => (
+                  <th key={index}>{column.name}</th>
                 ))}
                 <th>Actions</th>
               </tr>

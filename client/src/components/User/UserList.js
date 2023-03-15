@@ -142,12 +142,6 @@ const MyTable = () => {
                       >
                         Delete
                       </Button>{" "}
-                      <Button
-                        variant="secondary"
-                        onClick={() => handleRowClick(row)}
-                      >
-                        Details
-                      </Button>
                     </td>
                   </tr>
                 ))}
