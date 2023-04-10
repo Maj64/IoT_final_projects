@@ -18,7 +18,7 @@ export const authSlice = createSlice({
   name: "counter",
   initialState: {
     user: null,
-    isAuthenticated: true,
+    isAuthenticated: false,
     error: null
   },
   reducers: {
