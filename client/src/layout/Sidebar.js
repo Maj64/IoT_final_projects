@@ -1,10 +1,10 @@
 import React from "react";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
-import "../../styles/Layout/sidebar.scss"
+import "../styles/Layout/sidebar.scss"
 
 const Sidebar = () => {
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const location = useLocation();
 
   console.log("location: ", location.pathname === "/device");
@@ -24,7 +24,7 @@ const Sidebar = () => {
             location.pathname === "/device" ? "active" : ""
           }`}
         >
-          <Link to="/sensor">Sensor</Link>
+          <Link to="/device">Device</Link>
         </div>
         <div
           className={`sideBar-item ${

@@ -1,0 +1,35 @@
+$--font-size-sm: 0.75rem;
+/* 12px */
+$--font-size-base: 1rem;
+/* 16px, base */
+$--font-size-md: 1.25rem;
+/* 20px */
+$--font-size-lg: 1.5rem;
+/* 24px */
+$--font-size-xl: 1.75rem;
+/* 28px */
+$--font-size-xxl: 2rem;
+/* 32px */
+$--font-size-xxxl: 2.25rem;
+/* 36px */
+
+$--font-weight-sm-1: 100;
+$--font-weight-sm-2: 200;
+$--font-weight-sm-3: 300;
+$--font-weight-base: 400;
+/* normal */
+$--font-weight-md-5: 500;
+$--font-weight-md-6: 600;
+$--font-weight-lg: 700;
+/* bold */
+$--font-weight-xxl: 800;
+$--font-weight-xxxl: 900;
+
+$--color-background: rgba(255, 255, 255, 1);
+$--color-background-gradient: linear-gradient(135deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
+
+$--color-text: rgba(0, 0, 0, 1);
+$--color-text-white: rgba(255, 255, 255, 1);
+$--color-text-gray: rgba(89, 89, 89, 1);
+$--color-text-error: rgba(255, 0, 0, 1);
+$--color-text-input: rgba(0, 0, 0, 0.6);

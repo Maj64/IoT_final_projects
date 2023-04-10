@@ -22,10 +22,10 @@ function LoginForm() {
     event.preventDefault();
     const credentials = {
       email: username,
-      password
-    }
-    dispatch(loginAsync(credentials))
-    history.push('/')
+      password,
+    };
+    dispatch(loginAsync(credentials));
+    history.push("/");
   };
 
   const handleRegister = () => {
@@ -52,37 +52,51 @@ function LoginForm() {
         <span className="headerTitle">Login Page</span>
         {/* <button onClick={handleClick}>Auth</button> */}
         <div className="row">
-          <label>{"Username"}</label>
-          <input
-            placeholder="Enter your username"
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </div>
-        <div className="row">
-          <label>{"Username"}</label>
-          <div className="custom-input-password">
+          <div className="row-label">
+            <label>{"Username"}</label>
+          </div>
+          <div className="row-input">
             <input
-              placeholder="Enter your password"
-              type={isShowPassword ? "text" : "password"}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter your username"
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
-            <span onClick={() => setShowPassword(!isShowPassword)}>
-              <i class={!isShowPassword ? "far fa-eye-slash" : "far fa-eye"} />
-            </span>
           </div>
         </div>
-        <div className="specialText right" onClick={handlePasswordRetrieval}>
-          <span>Forgot password ?</span>
+        <div className="row">
+          <div className="row-label">
+            <label>{"Password"}</label>
+          </div>
+          <div className="row-input">
+            <div className="custom-input-password">
+              <input
+                placeholder="Enter your password"
+                type={isShowPassword ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <span onClick={() => setShowPassword(!isShowPassword)}>
+                <i
+                  className={
+                    !isShowPassword ? "far fa-eye-slash" : "far fa-eye"
+                  }
+                />
+              </span>
+            </div>
+          </div>
         </div>
-        <div className="specialText left">{warning && warning}</div>
-        <ButtonForm title="Login" onClick={handleLogin} />
-        <div style={{ textAlign: "center" }}>
-          <span>Or: </span>
+        <div className="action">
+          <div className="specialText right" onClick={handlePasswordRetrieval}>
+            <span>Forgot password ?</span>
+          </div>
+          {warning && <div className="specialText left">{warning}</div>}
+          <ButtonForm title="Login" onClick={handleLogin} />
+          <div className="link">
+            <span>Don't have an account? </span>
+            <Link to="/register">Register</Link>
+          </div>
         </div>
-        <ButtonForm title="Register" onClick={handleRegister} />
       </div>
     </div>
   );

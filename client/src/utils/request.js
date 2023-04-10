@@ -1,7 +1,7 @@
 import axios from 'axios'
-import { success, info, error as errorToast } from '../components/Common/Toast'
+// import { success, info, error as errorToast } from '../components/Common/Toast'
 // import store from '@/store'
-import { getToken } from './auth'
+// import { getToken } from './auth'
 
 // create an axios instance
 const service = axios.create({

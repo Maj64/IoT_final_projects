@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getSensors } from "../../service/sensor";
+import { getSensors } from "../../services/sensor";
 
 export const loginAsync = createAsyncThunk(
     'auth/loginAsync',

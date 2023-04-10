@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Col, Container, Image, Navbar, Row } from "react-bootstrap";
 // import { logout } from '../../actions/auth';
-import "../../styles/Layout/header.scss";
-import logo from "../../assets/svg/droplet-half.svg"
-import { logoutSuccess } from "../../store/actions/authSlice";
+import "../styles/Layout/header.scss";
+import logo from "../assets/svg/droplet-half.svg"
+import { logoutSuccess } from "../store/actions/authSlice";
 
 function Header(props) {
   const dispatch = useDispatch();
-  const { isAuthenticated, user } = useSelector((state) => state.auth);
+  // const { isAuthenticated, user } = useSelector((state) => state.auth);
   const isLogin = true;
 
   const handleLogout = () => {

@@ -4,7 +4,7 @@ import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
 
 import Sidebar from "./Sidebar";
 import Header from "./Header";
-import "../../styles/Layout/layout.scss"
+import "../styles/Layout/layout.scss"
 // import "./layout.scss";
 
 const DefaultLayout = ({ children }) => {

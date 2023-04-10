@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Line } from "react-chartjs-2";
-import { getSensorDataList } from "../service/sensorData";
+import { getSensorDataList } from "../services/sensorData";
 
 const MyChart = ({ sensorId }) => {
   console.log("chart", sensorId);

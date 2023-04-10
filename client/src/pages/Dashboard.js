@@ -16,10 +16,10 @@ import {
 import { Line } from "react-chartjs-2";
 import { faker } from "@faker-js/faker";
 
-import { getSensorDataList } from "../service/sensorData";
+import { getSensorDataList } from "../services/sensorData";
 import { useEffect, useState } from "react";
-import MyChart from "./Chart";
-import SensorDropdown from "./DropDown";
+import MyChart from "../components/Chart";
+import SensorDropdown from "../components/DropDown";
 
 ChartJS.register(
   CategoryScale,

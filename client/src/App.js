@@ -1,18 +1,25 @@
-import React, { useEffect } from "react";
+import React, { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Switch, Route, Link, Redirect } from "react-router-dom";
-import {ToastContainer} from './components/Common/Toast'
+import { ToastContainer } from "./components/Common/Toast";
 
 import PrivateRoute from "./components/PrivateRoute";
-import Login from "./components/Auth/Login";
-import Register from "./components/Auth/Register";
-import Dashboard from "./components/Dashboard";
-import DefaultLayout from "./components/layout/DefaultLayout";
-import Sensor from "./components/Device/DeviceList";
-import MyTable from "./components/User/UserList";
-import SensorList from "./components/Sensor/SensorList";
+import DefaultLayout from "./layout/DefaultLayout";
+import { privateRoutes, publicRoutes } from "./routes";
+import Login from "./pages/Auth/Login";
 // import { authenticate } from './actions/authActions';
 
+function initLayout(route) {
+  const Page = route.component;
+  let Layout = DefaultLayout;
+
+  if (route.layout) {
+    Layout = route.layout;
+  } else if (route.layout === null) {
+    Layout = Fragment;
+  }
+  return { Page, Layout };
+}
 
 function App() {
   // const dispatch = useDispatch();
@@ -24,14 +31,45 @@ function App() {
   return (
     <div className="main-container" style={{ width: "100%", height: "100%" }}>
       <Switch>
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Register} />
+        {publicRoutes.map((route, index) => {
+          const Page = route.component;
+          const Layout = Fragment;
+          return (
+            <Route
+              key={index}
+              path={route.path}
+              render={() => (
+                <Layout>
+                  <Page />
+                </Layout>
+              )}
+            />
+          );
+        })}
+        {/* <Route exact path="/login" component={Login} /> */}
+        {/* <Route exact path="/login" component={Login} />
+        <Route exact path="/register" component={Register} /> */}
+
         <PrivateRoute
           exact
           path="/"
           component={() => <Redirect to="/dashboard" />}
         />
-        <PrivateRoute
+        {privateRoutes.map((route, index) => {
+          const { Layout, Page } = initLayout(route);
+          return (
+            <PrivateRoute
+              key={index}
+              path={route.path}
+              component={() => (
+                <Layout>
+                  <Page />
+                </Layout>
+              )}
+            />
+          );
+        })}
+        {/* <PrivateRoute
           exact
           path="/dashboard"
           component={() => (
@@ -57,21 +95,21 @@ function App() {
               <MyTable />
             </DefaultLayout>
           )}
-        />
+        /> */}
 
         {/* <PrivateRoute exact path="/" component={Dashboard} /> */}
         {/* <PrivateRoute exact path="/sensors" component={Sensors} /> */}
       </Switch>
       <ToastContainer
-          position="top-center"
-          autoClose={5000}
-          newestOnTop
-          closeOnClick = {false}
-          rtl={false}
-          pauseOnVisibilityChange
-          pauseOnHover
-          className="custom-toast-container"
-        />
+        position="top-center"
+        autoClose={5000}
+        newestOnTop
+        closeOnClick={false}
+        rtl={false}
+        pauseOnVisibilityChange
+        pauseOnHover
+        className="custom-toast-container"
+      />
     </div>
   );
 }
