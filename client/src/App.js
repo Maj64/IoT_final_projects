@@ -6,7 +6,6 @@ import { ToastContainer } from "./components/Common/Toast";
 import PrivateRoute from "./components/PrivateRoute";
 import DefaultLayout from "./layout/DefaultLayout";
 import { privateRoutes, publicRoutes } from "./routes";
-import Login from "./pages/Auth/Login";
 // import { authenticate } from './actions/authActions';
 
 function initLayout(route) {
@@ -22,6 +21,7 @@ function initLayout(route) {
 }
 
 function App() {
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
   // const dispatch = useDispatch();
 
   // useEffect(() => {
@@ -58,47 +58,21 @@ function App() {
         {privateRoutes.map((route, index) => {
           const { Layout, Page } = initLayout(route);
           return (
-            <PrivateRoute
+            <Route
               key={index}
               path={route.path}
-              component={() => (
+              render={() => isAuthenticated ? (
                 <Layout>
                   <Page />
                 </Layout>
-              )}
+              ) : (
+                <Redirect
+                  to={{ pathname: "/login"}}
+                />
+              ) }
             />
           );
         })}
-        {/* <PrivateRoute
-          exact
-          path="/dashboard"
-          component={() => (
-            <DefaultLayout>
-              <Dashboard />
-            </DefaultLayout>
-          )}
-        />
-        <PrivateRoute
-          exact
-          path="/sensor"
-          component={() => (
-            <DefaultLayout>
-              <Sensor />
-            </DefaultLayout>
-          )}
-        />
-        <PrivateRoute
-          exact
-          path="/user"
-          component={() => (
-            <DefaultLayout>
-              <MyTable />
-            </DefaultLayout>
-          )}
-        /> */}
-
-        {/* <PrivateRoute exact path="/" component={Dashboard} /> */}
-        {/* <PrivateRoute exact path="/sensors" component={Sensors} /> */}
       </Switch>
       <ToastContainer
         position="top-center"

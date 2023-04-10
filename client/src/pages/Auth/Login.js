@@ -25,11 +25,7 @@ function LoginForm() {
       password,
     };
     dispatch(loginAsync(credentials));
-    history.push("/");
-  };
-
-  const handleRegister = () => {
-    history.push("/register");
+    history.push("/dashboard");
   };
 
   const handlePasswordRetrieval = () => {

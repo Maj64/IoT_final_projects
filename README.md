@@ -55,7 +55,7 @@ To install An IoT water quality monitoring system, follow these steps:
 5. Install the dependencies: `npm install`
 
 ## Usage
-To use BookStore, follow these steps:
+To use app, follow these steps:
 
 1. Start the server: `cd server && npm start`
 2. Start the client: `cd ../client && npm start`

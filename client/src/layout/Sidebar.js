@@ -6,9 +6,7 @@ import "../styles/Layout/sidebar.scss"
 const Sidebar = () => {
   // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const location = useLocation();
-
-  console.log("location: ", location.pathname === "/device");
-
+  
   return (
     <div className="sideBar-background">
       <div className="sideBar-container">
